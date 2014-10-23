@@ -1,12 +1,18 @@
-#include <Eigen/Eigen>
-#include <boost/numpy.hpp>
-#include <glog/logging.h>
-#include <numpy/arrayobject.h>
+/*
+  Primary source here.. yeah.
+*/
+#include <ben.h>
 
-namespace bp = boost::python;
-namespace np = boost::numpy;
+/*
+  Dunno wtf this is... 
+*/
+#ifndef NPY_ARRAY_C_CONTIGUOUS 
+  #define NPY_ARRAY_C_CONTIGUOUS false
+#endif
 
-using namespace Eigen;
+#ifndef NPY_ARRAY_ALIGNED
+  #define NPY_ARRAY_ALIGNED false
+#endif
 
 template <typename SCALAR>
 struct NumpyEquivalentType {};
@@ -211,6 +217,7 @@ struct EigenMatrixFromPython {
 #define BLOCK_CONV(R, C, BR, BC, T) \
   typedef Block<Matrix ## R ## C ## T, BR, BC> Block ## R ## C ## BR ## BC ## T; \
   EIGEN_MATRIX_CONVERTER(Block ## R ## C ## BR ## BC ## T);
+
 
 static const int X = Eigen::Dynamic;
 

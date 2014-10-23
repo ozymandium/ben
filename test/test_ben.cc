@@ -1,11 +1,7 @@
 // Tests from ndarray lib
-#include <boost/numpy.hpp>
-#include <Eigen/Eigen>
-#include "eigen_numpy.h"
-
+#include "ben.h"
 #include <iostream>
 
-namespace bp = boost::python;
 
 template <typename M>
 bool acceptMatrix(M m) {
@@ -58,9 +54,10 @@ bp::object returnObject() {
     return o;
 }
 
+
 static const int X = Eigen::Dynamic;
 
-BOOST_PYTHON_MODULE(test_eigen_numpy_mod) {
+BOOST_PYTHON_MODULE(test_ben) {
   boost::numpy::initialize();
   SetupEigenConverters();
   bp::def("acceptMatrix_23d_cref", acceptMatrix< Eigen::Matrix<double,2,3> const &>);
